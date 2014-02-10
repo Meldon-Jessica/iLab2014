@@ -2,16 +2,16 @@
 
 $serveur = 'localhost';
 $user = 'root';
-$password = '';
+$password = 'root';
 $db = 'iLab';
 $port = '3306';
 
 try {
 	$connexion = new PDO('mysql:host='.$serveur.';port='.$port.';dbname='.$db, $user, $password);
+	$connexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 }
 catch(PDOException $e){
-	echo $e->getMessage();
+	echo "erreur: ".$e->getMessage();
 }
-
 
 ?>
