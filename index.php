@@ -1,9 +1,11 @@
 <?php
 error_reporting(E_ALL);
 session_start();
-
 require_once 'connexion.php';
+
+
 if(!empty($_POST)){
+
    $pseudo = $_POST['pseudo'];
    $pseudo = strip_tags($pseudo);
    $password = $_POST['password'];
@@ -32,7 +34,7 @@ if(!empty($_POST)){
             $error_active = 'Votre compte n\'est pas actif, vérifiez vos mails pour activer votre compte'; 
          }
       } else {
-         $error_unknow = 'Utilisateur inconnu';
+         $error_active = 'Utilisateur inconnu';
       }
 
 
@@ -70,6 +72,7 @@ if(!empty($_POST)){
             <div class="error"><?php if(isset($error_password)){ echo $error_password; } ?></div>
 
             <input type="submit" value="Connexion" />
+            <div class="error"><?php if(isset($error_active)){ echo $error_active; } ?></div>            
          </form>
 
 

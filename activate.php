@@ -3,22 +3,24 @@ error_reporting(E_ALL);
 require_once 'connexion.php';
 
 $token = $_GET['token'];
-$mail = $_GET['mail'];
+$mail = $_GET['email'];
 if(!empty($_GET)){
 
    $sql = "SELECT mail, token FROM users WHERE mail = '".$mail."' AND token = '".$token."' ";
    try {
-      $connexion->exec($sql);
-      $count = $connexion->rowCount($sql);
+      $req = $connexion->prepare($sql);
+      $req->execute();
+      $count = $req->rowCount($sql);
       if($count == 1){
          // on vérifie si l'user en activé
          $sql2 = "SELECT mail, activer FROM users WHERE mail = '".$mail."' AND activer = 1 ";
-         $connexion->exec($sql2);
-         $dejaActive = $connexion->rowCount($sql2);
+         $req2 = $connexion->prepare($sql2);
+         $req2->execute();
+         $dejaActive = $req2->rowCount($sql2);
          if($dejaActive == 1){
             $error_actif = 'Votre compte a déjà été activé';
          } else {
-            $sql3 = "UPDATE users SET activer = 1 WHERE email = '".$mail."'";
+            $sql3 = "UPDATE users SET activer = 1 WHERE mail = '".$mail."'";
             $connexion->exec($sql3);
             $activated = 'Votre compte est désormais activé !';
          }
