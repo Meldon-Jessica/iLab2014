@@ -29,6 +29,22 @@ if(Auth::islog()){
 		   echo 'erreur: '.$e->getMessage();
 		}
 	}
+
+	function deleteName($ligne){
+		global $connexion;
+		$sql = "DELETE FROM friends WHERE id='".$ligne."'";
+		try {
+			$connexion->exec($sql);
+			echo 'supprimé';	
+		} catch(PDOException $e) {
+			echo 'erreur: '.$e->getMessage();
+		}
+	}
+
+	if(isset($_GET['tab']) && $_GET['del'] == true){
+		deleteName($_GET['tab']);
+	}
+
 } else {
 	header('Location:index.php');
 }
@@ -52,7 +68,7 @@ if(Auth::islog()){
 	    </header>
 
 	    <div class="content">
-	       	<form method="POST" action="">
+	       	<form method="POST" action="private.php">
 	       		<label for="addName">Ajouter une personne</label>
 	    		<input type="text" name="addName" placeholder="nom" value="<?php if(isset($_POST['addName'])){ echo $_POST['addName']; } ?>" />
 	    		<input type="submit" value="Ajouter" />
@@ -61,7 +77,7 @@ if(Auth::islog()){
 	    	<?php echo $pseudo; ?>
 	    	<ul>
 	    	<?php
-	    		$sql2 = "SELECT prenom, somme, soiree FROM friends WHERE username = '".$pseudo."'";
+	    		$sql2 = "SELECT prenom, somme, soiree, id FROM friends WHERE username = '".$pseudo."'";
 
 	    		$req2 = $connexion->prepare($sql2);
 	    		$req2->execute();
@@ -71,7 +87,10 @@ if(Auth::islog()){
 
 	    		for ($i = 1; $i <= $count; $i++) {
 	    		    echo '<li>';
-	    		    print_r($tableau[$i-1]);
+	    		    for($x = 0; $x <= 2; $x++){
+	    		    	echo '<span class="case">'.$tableau[$i-1][$x].'</span>';
+	    		    }
+	    		    echo '<a class="del" style="margin-left: 10px;" href="?tab='.$tableau[$i-1]['id'].'&del=true">X</a>';
 	    		    echo '</li>';
 	    		}
 
