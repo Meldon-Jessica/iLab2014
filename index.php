@@ -37,7 +37,6 @@ if(!empty($_POST)){
 
 
    } catch(PDOException $e) {
-      echo 'nope';
       echo 'erreur: '.$e->getMessage();
    }
 }
