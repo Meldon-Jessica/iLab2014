@@ -3,24 +3,28 @@ error_reporting(E_ALL);
 session_start();
 
 require_once 'connexion.php';
-
 if(!empty($_POST)){
    $pseudo = $_POST['pseudo'];
    $pseudo = strip_tags($pseudo);
    $password = $_POST['password'];
+   $password = sha1($password);
 
-   $sql = "SELECT pseudo, password FROM users WHERE pseudo = '".$pseudo."' AND password = '".$password."'";
+   $sql = "SELECT username, password FROM users WHERE username = '".$pseudo."' AND password = '".$password."'";
    try {
-      $connexion->exec($sql);
-      $count = $connexion->rowCount($sql);
+      $req = $connexion->prepare($sql);
+      $req->execute();
+      $count = $req->rowCount($sql);
+      
       if($count == 1){
          // Vérifier si l'user est activé
-         $sql2 = "SELECT pseudo, password FROM users WHERE pseudo = '".$pseudo."' AND password = '".$password."' AND activer = 1";
-         $connexion->exec($sql2);
-         $active = $connexion->round($slq2)
+         $sql2 = "SELECT username, password, activer FROM users WHERE username = '".$pseudo."' AND password = '".$password."' AND activer = 1";
+         $req2 = $connexion->prepare($sql2);
+         $req2->execute();
+         $active = $req2->rowCount($connexion);
+         
          if($active == 1){
             $_SESSION['Auth'] = array(
-               'mail' => $mail,
+               'pseudo' => $pseudo,
                'password' => $password
             );
             header('Location:private.php');
@@ -32,8 +36,8 @@ if(!empty($_POST)){
       }
 
 
-   }
-   catch(PDOException $e) {
+   } catch(PDOException $e) {
+      echo 'nope';
       echo 'erreur: '.$e->getMessage();
    }
 }

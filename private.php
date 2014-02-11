@@ -1,10 +1,11 @@
 <?php
 session_start();
 require('auth.php');
-is(Auth::islog()){
-
+if(Auth::islog()){
+	echo 'YATTA';
 } else {
-	header('Location:index.php');
+	/*header('Location:index.php');*/
+	echo 'nope';
 }
 
 ?>
