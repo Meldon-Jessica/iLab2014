@@ -14,6 +14,7 @@ if(!empty($_POST) && isset($_POST['pseudo']) && isset($_POST['mail']) && isset($
 
    $pseudo = trim($_POST['pseudo']);
    $pseudo = strip_tags($pseudo);
+   $pseudo = addslashes($pseudo);
    $mail = trim($_POST['mail']);
    $mail = strip_tags($mail);
    $token = sha1(uniqid(rand()));
