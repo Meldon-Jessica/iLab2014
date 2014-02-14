@@ -182,6 +182,7 @@ if(Auth::islog()){
 			<div class="bl-panel-items" id="bl-panel-work-items">
 				<div data-panel="panel-1" id="panel1">
 					<div class="quest_form">
+						<div class="back"><img src="assets/img/bck.png"/></div>
 						<h3><span>Q</span>ui ?</h3>
 				    	<form method="POST" action="private.php">
 				    		<input type="text" name="addName" placeholder="NOM" value="<?php if(isset($_POST['addName'])){ echo $_POST['addName']; } ?>" required />

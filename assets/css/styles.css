@@ -314,7 +314,29 @@ input[type=submit] {
 	cursor: pointer;
 }
 
+
+input[type=submit]:active {
+		 -webkit-transform: scale(0.95,0.95);
+    -moz-transform: scale(0.95,0.95);
+    -ms-transform: scale(0.95,0.95);
+    -o-transform: scale(0.95,0.95);
+    transform: scale(0.95,0.95);
+    -webkit-transition: all .4s ease-out;
+    -moz-transition: all .4s ease-out;
+    -o-transition: all .4s ease-out;
+    transition: all .4s ease-out;
+    outline: 0!none;
+}
+
 .steps {
 	text-align: right;
 	padding-right: 10px;
+}
+
+.back img {
+	width: 25px;
+	height: 25px;
+	position: absolute;
+	top: 9%;
+	left: 7%;
 }

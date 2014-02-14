@@ -14,30 +14,52 @@ if(!empty($_POST) && isset($_POST['pseudo']) && isset($_POST['mail']) && isset($
 
    $pseudo = trim($_POST['pseudo']);
    $pseudo = strip_tags($pseudo);
+   $pseudo = addslashes($pseudo);
    $mail = trim($_POST['mail']);
    $mail = strip_tags($mail);
    $token = sha1(uniqid(rand()));
    $password = trim($_POST['password']);
    $password = strip_tags($password);
 
-   if(strlen($pseudo)>3 && is_valid_email($mail) == true && !empty($password)){
+   /*$sql = "SELECT username, password FROM users WHERE username = '".$pseudo."' AND password = '".$password."'";*/
+   $sql = "SELECT username, password FROM users WHERE username = '".$pseudo."'";
+   try {
+      $req = $connexion->prepare($sql);
+      $req->execute();
+      $countPseudo = $req->rowCount($sql);
+   } catch(PDOException $e) {
+      echo 'erreur: '.$e->getMessage();
+   }
+   $sql = "SELECT username, mail FROM users WHERE mail = '".$mail."'";
+   try {
+      $req = $connexion->prepare($sql);
+      $req->execute();
+      $countMail = $req->rowCount($sql);
+   } catch(PDOException $e) {
+      echo 'erreur: '.$e->getMessage();
+   }
+
+
+   if(strlen($pseudo)>3 && is_valid_email($mail) == true && !empty($password) && $countPseudo == 0 && $countMail == 0){
    
       $password = sha1($password);
 
       $sql = "INSERT INTO users (username, mail, password, created, token) VALUES ('".$pseudo."', '".$mail."', '".$password."','".date("Y-m-d G:i:s")."', '".$token."')";
       try {
          $connexion->exec($sql);
-         $body = '
-            Bonjour, veuillez activez votre compte en cliquant ici ->
-            <a href="http://localhost/iLab2014/activate.php?token='.$token.'&email='.$to.'">Activation du compte</a>';
-            $entete = "MIME-Version: 1.0\r\n";
-            $entete .= "Content-type: text/html; charset=UTF-8\r\n";
-            $entete .= 'From: appli@appli.com' . "\r\n" .
-            'Reply-To: contact@appli.com' . "\r\n" .
-            'X-Mailer: PHP/' . phpversion();
+         $body = 'Bonjour, veuillez activez votre compte en cliquant ici -> <a href="http://localhost/iLab2014/activate.php?token='.$token.'&email='.$mail.'">Activation du compte</a>';
+
+             // Pour envoyer un mail HTML, l'en-tête Content-type doit être défini
+              $entete  = 'MIME-Version: 1.0' . "\r\n";
+              $entete .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+              // En-têtes additionnels
+              $entete .= 'To: Mary <mary@example.com>, Kelly <kelly@example.com>' . "\r\n";
+              $entete .= 'From: Anniversaire <anniversaire@example.com>' . "\r\n";
+              $entete .= 'Cc: anniversaire_archive@example.com' . "\r\n";
+              $entete .= 'Bcc: anniversaire_verif@example.com' . "\r\n";
             
             // Envoi du mail
-            if (mail($to,$sujet,$body,$entete)){
+            if (mail($mail, 'Activation: ',$body,$entete)){
                $reponse = 'Votre inscription a bien été enregistrée, un mail d\'activation vous a été envoyé. Merci !';
             } else {
                $reponse = 'Échec de l\'envoi de l\'email';
@@ -52,12 +74,19 @@ if(!empty($_POST) && isset($_POST['pseudo']) && isset($_POST['mail']) && isset($
    } else {
       if(!empty($_POST) && strlen($_POST['pseudo'])<4){
          $error_pseudo = 'Votre pseudo doit comporter au minimum 3 charactères !';
-      }
-      if(!empty($_POST) && is_valid_email($mail) == false){
+      } else if(!empty($_POST) && is_valid_email($mail) == false){
          $error_mail = 'Votre adresse e-mail n\'est pas valide !';
-      }
-      if(!empty($POST) && empty($password)){
+      } else if(!empty($_POST) && empty($password)){
          $error_password = 'Votre mot de pass n\'est pas valide';
+      } else if(!empty($_POST) && $countPseudo != 0 && $countMail != 0){
+         $error_pseudo = 'Ce peudo est déjà utilisé.';
+         $error_mail = 'Cette adresse e-mail est déjà utilisée';
+      } else if(!empty($_POST) && $countPseudo != 0 || $countMail != 0){
+         if($countPseudo != 0){
+            $error_pseudo = 'Ce peudo est déjà utilisé.';
+         } else if($countMail != 0){
+            $error_mail = 'Cette adresse e-mail est déjà utilisée';
+         }
       }
    }
    
