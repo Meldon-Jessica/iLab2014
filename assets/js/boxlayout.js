@@ -38,12 +38,24 @@ var Boxlayout = (function() {
 		// support css transitions
 		supportTransitions = Modernizr.csstransitions;
 
+	var panelX = 1;
+
 	function init() {
 		initEvents();
 	}
 
+	function nextPanel(){
+		var currentPanel = '.panel'+panelX;
+		$(currentPanel).addClass('bl-show-work');
+		panelX++;
+	}
+
 	function initEvents() {
 		
+		$('#panel1').addClass('bl-show-work');
+		$('.startX').click(function(e){
+			nextPanel();
+		});
 		
 					
 
@@ -51,14 +63,14 @@ var Boxlayout = (function() {
 		$('#bl-work-section').click( function( event ) {
 
 			// scale down main section
-			$('#bl-work-section').addClass( 'bl-hide-current-work' );
+			/*$('#bl-work-section').addClass( 'bl-hide-current-work' );*/
 
 			// show panel for this work item
 			/*$('#bl-panel-work-items').addClass( 'bl-panel-items-show' );*/
 
 			/*var $panel = $workPanelsContainer.find("[data-panel='" + $( this ).data( 'panel' ) + "']");
 			currentWorkPanel = $panel.index();*/
-			$('#panel1').addClass( 'bl-show-work' );
+			/*$('#panel1').addClass( 'bl-show-work' );*/
 
 			return false;
 

@@ -149,13 +149,17 @@ if(Auth::islog()){
    	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 
+
    	<!-- link href="styles.css" rel="stylesheet" -->
    	<link rel="stylesheet" href="assets/css/jquery-ui.css">
    	<link rel="stylesheet" href="assets/css/styles.css">
+   	<link rel="stylesheet" href="assets/fonts/css/font-awesome.css">
+
    	
    	<script src="assets/js/jquery.js"></script>
    	<script type="text/javascript" src="assets/js/jquery-ui.js"></script>
    	<script type="text/javascript" src="assets/js/modernizr.custom.js"></script>
+
    	
    	<script src="assets/js/boxlayout.js"></script>
    	<script>
@@ -184,7 +188,7 @@ if(Auth::islog()){
 					<div class="quest_form">
 						<div class="back"><img src="assets/img/bck.png"/></div>
 						<h3><span>Q</span>ui ?</h3>
-				    	<form method="POST" action="private.php">
+				    	<form class="owe" method="POST" action="private.php">
 				    		<input type="text" name="addName" placeholder="NOM" value="<?php if(isset($_POST['addName'])){ echo $_POST['addName']; } ?>" required />
 				    		<input type="submit" value="Next" />
 				 			<div class="error"><?php if(isset($error_message_name)){ echo $error_message_name;} ?></div>
@@ -195,7 +199,7 @@ if(Auth::islog()){
 				<div data-panel="panel-2">
 					<div class="quest_form">
 						<h3><span>M</span>ontant</h3>
-			    		<form method="POST" action="private.php">
+			    		<form class="owe" method="POST" action="private.php">
 			    			<label for="addMontant">Combien ?</label>
 			    			<input type="text" name="addMontant" placeholder="MONTANT" value="<?php if(isset($_POST['addMontant'])){ echo $_POST['addMontant']; } ?>" required />
 			    			<input type="submit" value="Next" />
@@ -207,7 +211,7 @@ if(Auth::islog()){
 			    <div data-panel="panel-3">
 			    	<div class="quest_form">
 						<h3><span>D</span>ate d'écheance</h3>
-						<form action="private.php" method="POST">
+						<form class="owe" action="private.php" method="POST">
 							<div class="calendar"></div>
 							<input type="text" id="datepicker" name="datepicker" value="<?php if(isset($_POST['datepicker'])){ echo $_POST['datepicker']; } ?>" />
 							<input type="submit" value="INSERT DATE">
@@ -218,7 +222,7 @@ if(Auth::islog()){
 				<div data-panel="panel-4">
 					<div class="quest_form">
 						<h3>Note</h3>
-						<form action="private.php" method="POST">
+						<form class="owe" action="private.php" method="POST">
 							<label for="addNote">Note</label>
 							<textarea name="addNote"></textarea>
 							<input type="submit" value="Ajouter" />
