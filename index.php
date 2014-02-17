@@ -57,31 +57,29 @@ if(!empty($_POST)){
       <link rel="stylesheet" href="assets/css/jquery-ui.css">
       <link rel="stylesheet" href="assets/css/styles.css">
       <link rel="stylesheet" href="assets/fonts/css/font-awesome.css">
+      <meta name="viewport" content="width=device-width"/>
+      <meta name="viewport" content="initial-scale=1.0"/>
    <!-- script type="text/javascript" src="http://code.jquery.com/jquery.js"></script -->
 </head>
 <body>
    <div class="container">
       <header>
-         <a href="index.php" src="logo.png" >Oweme</a>
+         <h1><a href="index.php" src="logo.png" ><span>Owe</span>me</a></h1>
       </header>
 
       <div class="content_connexion">
-<!--          <h1>Connexion</h1> -->
          <form class="connexion" action="" method="POST">
-<!--             <label for="pseudo">Pseudo</label> -->
-            <input class="connexion" type="text" placeholder="USER" name="pseudo" value="<?php if(isset($_POST['pseudo'])){ echo $_POST['pseudo']; } ?>" required /><br />
+            <!-- <label for="pseudo">Pseudo</label> -->
+            <input type="text" name="pseudo" placeholder="USER" value="<?php if(isset($_POST['pseudo'])){ echo $_POST['pseudo']; } ?>" required /><br />
             <div class="error"><?php if(isset($error_pseudo)){ echo $error_pseudo; } ?></div>
-<!--             <label for="password">Password</label> -->
-            <input class="connexion" type="password" placeholder="PASSWORD" name="password" required /><br />
+            <!-- <label for="password">Password</label> -->
+            <input type="password" name="password" placeholder="PASSWORD" required /><br />
             <div class="error"><?php if(isset($error_password)){ echo $error_password; } ?></div>
 
-            <input type="submit" value="Connexion" />
+            <input type="submit" value="Connection" />
             <div class="error"><?php if(isset($error_active)){ echo $error_active; } ?></div>            
          </form>
-
-
-         <br />
-         <a class="sign" href="register.php">Sign in</a>
+         <a class="sign" href="register.php">Register</a>
       </div>
    </div>
 </body>
