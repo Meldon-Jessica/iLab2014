@@ -42,7 +42,8 @@ a:hover {
 }
 
 .container_add,
-.container_menu
+.container_menu,
+.container_recup
 
 { height: 100%; width: 100%; overflow: hidden}
 
@@ -147,7 +148,7 @@ div.content_add
 
 div.bl-panel-items > div > div,
 div.content_connexion,
-.add_choice {
+.addChoice {
 	width: 83%;
 	margin: 0 auto;
 	opacity: 1;
@@ -157,13 +158,13 @@ div.content_connexion,
 	padding: 5px;
 }
 
-.add_choice {
+.addChoice {
 	top: 14%;
 }
 
 
 div.bl-panel-items > div > div,
-.add_choice
+.addChoice
  {
 	top: 14%;
 }
@@ -271,7 +272,7 @@ div.bl-panel-items > div.bl-hide-current-work {
 	cursor: pointer;
 	opacity: 1;
 	left: 27%;
-	top: 32%;
+	top: 23%;
 
     display: -webkit-box;
     display: -moz-box;
@@ -312,6 +313,14 @@ div.bl-panel-items > div.bl-hide-current-work {
 
 }
 
+.personalCount {
+	font-size: 6em;
+	font-weight: 100;
+	word-spacing: -0.1em;
+	left: 71%;
+	bottom: -164%;
+}
+
 ////// bl-work-section /////
 
 h2 .bl-icon .bl-icon-works {
@@ -324,8 +333,7 @@ img	{
 	margin: 0 auto;
 }
 
-.quest_form,
-.add_choice
+.quest_form
 {
 	background-color: #f9807d;
 	top: 27.5%;
@@ -349,7 +357,8 @@ header {
 	margin-top: 0px;
 }
 
-.container_menu #header h1 a{
+.container_menu #header h1 a,
+.container_recup #header h1 a{
 	color: #fff;
 	margin-top: 0px;
 }
@@ -362,7 +371,8 @@ header {
 	position: absolute;
 }
 
-.container_menu #header img {
+.container_menu #header img,
+.container_recup #header img {
 	right: 0;
 	margin: 0px 20px 0px 20px;
 }
@@ -372,25 +382,28 @@ header {
 	top: 0%;
 }
 
-.container_menu #header {
+.container_menu #header,
+.container_recup #header {
 	background-color: #fb2b69;
 	z-index: 1;
 }
 
 /*// FORM ////////////////////////////*/
 
-.add_choice a{
+.addChoice a{
 	width: 100%;
 	display: block;
 	background-color: #fff;
 	text-decoration: none;
-	border-top: 1px solid rgba(0, 0, 0, .1);
+	border-top: 1px solid rgba(0, 0, 0, .05);
 	height: 50px;
 	padding-top: 15px;
 	padding-left: 15px;
 }
 
-.quest_form form.owe {
+.quest_form form.owe,
+
+ {
 	background-color: #fff;
 	margin: 0px;
 	padding: 15px 15px 20px 15px;
@@ -398,7 +411,7 @@ header {
 	margin-bottom: 7px;
 }
 
-.add_choice form.owe {
+.addChoice .owe {
 	border-radius: 5px;
 	padding: 0px!important;
 	margin-bottom: 7px;
@@ -564,7 +577,7 @@ div.line {
 	position: absolute;
 	border-bottom: 2px solid black;
 	border-top: 2px solid black;
-	opacity: .1
+	opacity: .05
 }
 
 div.line:nth-child(3){
@@ -573,7 +586,8 @@ div.line:nth-child(3){
 }
 
 /*////// MENU */
-.content_menu > ul
+.content_menu > ul,
+.addChoice ul
  {
 	font-family: 'Lato', Calibri, Arial, sans-serif;
 /*	background-color: red;*/
@@ -586,6 +600,12 @@ div.line:nth-child(3){
 	list-style: none;
 }
 
+.addChoice ul {
+	font-size: 1.2em;
+	position: inherit;
+	margin-top: 0px;
+}
+
 
 
 .content_menu a {
@@ -596,9 +616,10 @@ div.line:nth-child(3){
 }
 
 .content_menu > ul > li,
-.content_menu ul ul > li {
+.content_menu ul ul > li,
+.addChoice li {
 		height: 48px;
-	padding-top: 10px;
+	padding-top: 14px;
 }
 
 .content_menu ul ul {
@@ -635,7 +656,7 @@ div.line:nth-child(3){
 .content_menu a {
 	margin-left: 14%;
 }
-
+/*/// Add Choice */
 div.addChoice {
 	left: 100%;
 	z-index: 9999;
@@ -657,6 +678,74 @@ div.addChoice {
 	-webkit-transform: translateX(-100%) !important;
 }
 
+.addChoice ul
+{
+	list-style: none;
+	padding-left: 0px;
+	margin-bottom: 0px;
+}
 
+.addChoice li {
+	border-bottom: 1px solid rgba(0,0,0,.05);
+	padding-left: 24px;
+}
 
+.addChoice .owe {
+}
+
+.addChoice a {
+
+}
+
+/*/// RECUP */
+
+.recup #header  {
+margin-left: 20px;
+}
+
+a.menu_white{
+	width: 30px;
+height: 30px;
+display: block;
+margin: 0px 0px 0px 20px;
+position: absolute;
+} 
+
+.container_recup #header {
+	padding:43px 20px 0px 20px;
+}
+
+table {
+	margin-top: 32%;
+	color: #3d3d3d;
+}
+
+tr {
+	width: 100%;
+	display: block;
+}
+
+td.nom {
+	font-size: 1.4em;
+}
+
+td .del,
+td .add {
+	display: none;
+}
+
+td span {
+	font-size: 0.9em;
+	color: rgba(0,0,0,.5);
+	font-weight: bold;
+}
+
+td.montantTotal{
+display: block;
+font-size: 6em;
+text-align: center;
+width: 100%;
+font-weight: 100;
+color: #fb2b69;
+} 
 

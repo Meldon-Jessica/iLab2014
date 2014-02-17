@@ -68,13 +68,19 @@ if(Auth::islog()){
 			<!-- bl-panel-items avant ou apres addClass?	 -->
 
 				<div class="addChoice">
-				<ul>
-					<li class="onMeDoitMenu">On me doit</li>
-					<li class="jeDoisMenu">Je dois</li>
-					<li class="activitesMenu">Activités</li>
-				</ul>
-				<div class="steps">1/6</div>
-			</div>
+						<div class="quest_form">
+							<div class="owe">
+					    		<div class="back"><img src="assets/img/bck.png"/></div>
+								<h3><span>Add</span> an account</h3>
+								<ul>
+									<li class="onMeDoitMenu">On me doit</li>
+									<li class="jeDoisMenu">Je dois</li>
+									<li class="activitesMenu">Activités</li>
+								</ul>
+							</div> <!-- end owe -->
+							<div class="steps">1/6</div>
+						</div> <!-- end quest_form -->
+				</div> <!-- end AddChoice -->
 
 			<div class="bl-panel-items onMeDoit">
 				<div class="panel1">
