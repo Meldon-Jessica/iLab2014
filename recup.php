@@ -19,17 +19,31 @@
          <a class="menu_white" href="menu.html"><img src="assets/img/burger_white.png"/></a>
             <h1><a href="index.php" src="logo.png" ><span>They</span> owe me</a></h1>
       </div> <!-- end header -->
-      <div class="content_menu">
+      <div class="contentRecup">
             <table>
                <tr>
                   <td class="montantTotal">+160€</td>
                </tr>
-               <tr>
-                  <td class="Nom">John Smith </br><span>12 February 2015</span></td>
+               <tr class="recupInfos">
+                  <td class="nom">John Smith </br><span>12 February 2015</span></td>
                  
                   <td class="montant">+30€</td>
-                  <td class="del">Delete</td>
-                  <td class="add">Add</td>
+                  <td class="add"><i class="fa fa-plus-circle"> Add</i></td>
+                  <td class="del"><i class="fa fa-ban "> Delete</i></td>
+               </tr>
+               <tr class="recupInfos">
+                  <td class="nom">Breitz Hell </br><span>17 March 2014</span></td>
+                 
+                  <td class="montant">+50€</td>
+                  <td class="add"><i class="fa fa-plus-circle"> Add</i></td>
+                  <td class="del"><i class="fa fa-ban "> Delete</i></td>
+               </tr>
+               <tr class="recupInfos">
+                  <td class="nom">Roast Beef </br><span>08 April 2014</span></td>
+                 
+                  <td class="montant">+80€</td>
+                  <td class="add"><i class="fa fa-plus-circle"> Add</i></td>
+                  <td class="del"><i class="fa fa-ban "> Delete</i></td>
                </tr>
             </table>
       </div><!-- end content_add -->
